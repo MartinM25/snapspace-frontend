@@ -1,0 +1,44 @@
+<div class="h-full w-[250px] bg-grey-400 fixed flex flex-col">
+  <div class="flex pl-2 pt-6">
+    <img src="assets/logo-snapspace.png" alt="Logo" class="h-14">
+  </div>
+  <ul class="flex flex-col space-y-4 mt-6 px-4 flex-grow">
+    <li *ngFor="let route of routes">
+      <a
+        [routerLink]="route.path"
+        class="sidebar-link"
+        [ngClass]="{ 'active': isRouteActive(route.path) }"
+      >
+        <app-icon
+          [iconName]="isRouteActive(route.path) ? route.activeIcon : route.inactiveIcon"
+          class="mr-2"
+        ></app-icon>
+        <span [ngClass]="{ 'font-bold': isRouteActive(route.path) }">
+          {{ route.label }}
+        </span>
+      </a>
+    </li>
+  </ul>
+  <div class="flex flex-col space-y-4 mt-6 px-4 flex-grow">
+    <button
+      class="flex bg-orange-400 hover:bg-orange-500 text-grey-100 justify-center items-center p-2 rounded-md"
+    >
+      Post
+    </button>
+  </div>
+
+  <div class="mt-auto mb-6">
+    <app-profile
+      [fullName]="'John Doe'"
+      [username]="'@johndoe12'"
+      [profilePicture]="'assets/images/user.png'"
+    ></app-profile>
+    <!-- <div class="mt-6 px-4">
+      <div class="sidebar-link pl-4">
+        <app-icon iconName="exit"></app-icon> Logout
+      </div>  
+    </div> -->
+  </div>
+</div>
+
+

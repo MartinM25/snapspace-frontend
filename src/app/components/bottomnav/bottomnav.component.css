@@ -1,0 +1,7 @@
+.bottom-nav a {
+    text-decoration: none; /* Remove underline from links */
+  }
+  
+  .bottom-nav a.active app-icon {
+    color: your-active-color; /* Change color for active icon */
+  }

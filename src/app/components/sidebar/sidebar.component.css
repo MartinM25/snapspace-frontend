@@ -1,0 +1,18 @@
+.sidebar-link {
+  display: flex;
+  padding: 12px;
+  font-size: 18px;
+  color: var(--grey-100);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.sidebar-link:hover {
+  background-color: var(--grey-500);
+}
+
+.active {
+  font-weight: 500;
+}

@@ -1,13 +1,36 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+
+import { CommonModule } from '@angular/common';
+import { RouterOutlet, Router } from '@angular/router';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { BottomnavComponent } from "./components/bottomnav/bottomnav.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, SidebarComponent, CommonModule, BottomnavComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'snapspace';
+
+  constructor(private router: Router) { }
+
+  showSidebar(): boolean {
+    const hideRoutes = ['/login', '/register']; // Add more routes here as needed
+    return !hideRoutes.includes(this.router.url);
+  }
+
+  isLargeScreen(): boolean {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth >= 1024; // or whatever breakpoint you're using
+    }
+    return false; // Default fallback in SSR
+  }
+
+  showBottomNav(): boolean {
+    const hideRoutes = ['/login', '/register']; // Add more routes here as needed
+    return !hideRoutes.includes(this.router.url);
+  }
 }

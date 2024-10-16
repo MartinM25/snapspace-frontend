@@ -1,0 +1,82 @@
+<div class="flex flex-col justify-center items-center w-full h-full">
+  <!-- Logo -->
+  <img src="assets/logo-snapspace.png" alt="Logo" class="h-20 lg:h-20">
+  <div class="flex text-center max-w-[40%]">
+    <p class="text-grey-200 text-xl">
+      Sign up to see photos from your friends.
+    </p>
+  </div>
+
+  <!-- Responsive Form Container -->
+  <div class="flex flex-col w-[80%] md:w-[60%] lg:w-[30%] px-8 py-6 space-y-4 rounded-md bg-grey-400">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="flex flex-col m-4 space-y-4">
+      
+      <div *ngIf="message" class="text-red-500 text-xs pt-2 p-2 rounded-md border border-red-600 w-full justify-center text-center">{{ message }}</div>
+      <!-- Full Name Input -->
+      <div class="flex flex-col">
+        <input 
+          id="fullName" 
+          placeholder="Full Name" 
+          type="text"
+          formControlName="fullName"
+          class="px-2 py-3 text-[12px] rounded-md bg-grey-300 border-none focus:outline-none focus:ring-1 focus:ring-orange-500 text-grey-200"
+        >
+      </div>
+
+      <!-- Username Input -->
+      <div class="flex flex-col">
+        <input 
+          id="username" 
+          placeholder="Username" 
+          type="text"
+          formControlName="username"
+          class="px-2 py-3 text-[12px] rounded-md bg-grey-300 border-none focus:outline-none focus:ring-1 focus:ring-orange-500 text-grey-200"
+        >
+      </div>
+
+      <!-- Email Input -->
+      <div class="flex flex-col">
+        <input 
+          id="email" 
+          placeholder="Email" 
+          type="email"
+          formControlName="email"
+          class="px-2 py-3 text-[12px] rounded-md bg-grey-300 border-none focus:outline-none focus:ring-1 focus:ring-orange-500 text-grey-200"
+        >
+      </div>
+
+      <!-- Password Input -->
+      <div class="flex flex-col">
+        <input 
+          id="password" 
+          placeholder="Password" 
+          type="password"
+          formControlName="password"
+          class="px-2 py-3 text-[12px] rounded-md bg-grey-300 border-none focus:outline-none focus:ring-1 focus:ring-orange-500 text-grey-200"
+        >
+      </div>
+
+      <!-- Login Button -->
+      <div *ngIf="isSuccess; else registerButton">
+        <div class="border border-green-500 p-4 rounded-md text-green-700 text-center">
+          Successfully created an account! Please navigate to login page <br />
+        </div>
+      </div>
+      <ng-template #registerButton>
+        <button type="submit"
+          class="flex bg-orange-400 hover:bg-orange-500 text-white justify-center items-center p-2 rounded-md">
+          <mat-progress-spinner *ngIf="isLoading" diameter="20" mode="indeterminate" color="secondary"></mat-progress-spinner>
+          <span *ngIf="!isLoading" class="text-[14px]">Register</span>
+        </button>
+      </ng-template>
+    </form>
+    <!-- Divider Line -->
+    <div class="border-t border-grey-300 my-4"></div>
+
+
+    <div class="text-center mt-4">
+      <p class="text-grey-200">Don't have an account? <a (click)="goToLogin()"
+          class="text-blue-500  hover:underline cursor-pointer">Login</a></p>
+    </div>
+  </div>
+</div>

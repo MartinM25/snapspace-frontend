@@ -1,0 +1,56 @@
+<div class="flex justify-center items-center w-full h-full">
+  <div class="w-[50%] md:w-[80%] flex flex-col lg:flex-row lg:justify-between lg:w-auto">
+
+    <!-- Logo and Text Section -->
+    <div
+      class="flex flex-col w-full justify-center items-center lg:justify-start lg:items-start lg:w-[60%] mb-4 lg:mb-0">
+      <img src="assets/logo-snapspace.png" alt="Logo" class="h-24 lg:h-32">
+      <p class="px-8 text-2xl font-light text-grey-100">
+        Snapspace allows you to share your favourite snaps with other people.
+      </p>
+    </div>
+
+    <div class=" w-full lg:w-[40%] p-6 text-center rounded-md bg-grey-400">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col m-4 space-y-4">
+        <!-- Email Input -->
+        <div *ngIf="message" class="text-red-500 text-xs pt-2 p-2 rounded-md border border-red-600 w-full justify-center text-center">{{ message }}</div>
+        <div class="flex flex-col">
+          <input 
+            id="email" 
+            placeholder="Email" 
+            type="email" 
+            formControlName="email"
+            class="px-2 py-3 text-[12px] rounded-md bg-grey-300 border-none focus:outline-none focus:ring-1 focus:ring-orange-400 text-grey-200"
+          >
+        </div>
+
+        <!-- Password Input -->
+        <div class="flex flex-col">
+          <input 
+            id="password" 
+            placeholder="Password" 
+            type="password" 
+            formControlName="password"
+            class="px-2 py-3 text-[12px] rounded-md bg-grey-300 border-none focus:outline-none focus:ring-1 focus:ring-orange-400 text-grey-200"
+          >
+        </div>
+
+        <!-- Login Button -->
+        <button type="submit" class="flex bg-orange-400 hover:bg-orange-500 text-white justify-center items-center p-2 rounded-md">
+          <mat-progress-spinner *ngIf="isLoading" diameter="20" mode="indeterminate" color="secondary" ></mat-progress-spinner>
+          <span *ngIf="!isLoading" class="text-[14px]">Login</span>
+        </button>
+      </form>
+      
+      <a href="#" class="text-blue-500 underline text-sm text-center">Forgotten password?</a>
+
+      <div class="border-t border-grey-300 my-4"></div>
+
+      <!-- Register Button -->
+      <div class="text-center mt-4">
+        <p class="text-grey-200">Don't have an account? <a (click)="goToRegister()" class="text-blue-500  hover:underline cursor-pointer">Sign up</a></p>
+      </div>
+    </div>
+
+  </div>
+</div>

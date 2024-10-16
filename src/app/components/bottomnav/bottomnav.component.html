@@ -1,0 +1,16 @@
+<div class="w-full h-[50px] bg-grey-400 fixed bottom-0 left-0 flex items-center justify-around">
+  <ul class="flex w-full justify-around items-center">
+    <li *ngFor="let route of routes">
+      <a
+        [routerLink]="route.path"
+        class="flex items-center justify-center"
+        [ngClass]="{ 'active': isRouteActive(route.path) }"
+      >
+        <app-icon
+          [iconName]="isRouteActive(route.path) ? route.activeIcon : route.inactiveIcon"
+          class="w-8 h-8" 
+        ></app-icon>
+      </a>
+    </li>
+  </ul>
+</div>
