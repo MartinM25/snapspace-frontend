@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SavedComponent } from './pages/saved/saved.component';
@@ -17,24 +18,24 @@ export const routes: Routes = [
     path: 'register', component: RegisterComponent
   },
   {
-    path: 'home', component: HomeComponent
+    path: 'home', component: HomeComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'explore', component: ExploreComponent
+    path: 'explore', component: ExploreComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'profile', component: ProfileComponent
+    path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'messages', component: MessagesComponent
+    path: 'messages', component: MessagesComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'saved', component: SavedComponent
+    path: 'saved', component: SavedComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'create', component: CreateComponent
+    path: 'create', component: CreateComponent, canActivate: [AuthGuard]
   },
   { 
-    path: '', redirectTo: '/login', pathMatch: 'full' 
+    path: '', redirectTo: '/', pathMatch: 'full' 
   },
 ];
