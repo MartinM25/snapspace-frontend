@@ -1,5 +1,5 @@
-<div class="flex justify-center items-center w-full h-full">
-  <div class="w-[50%] md:w-[80%] flex flex-col lg:flex-row lg:justify-between lg:w-auto">
+<div class="flex justify-center items-center w-full h-full border-red-500 border-2 ">
+  <div class="border-2 flex flex-col lg:flex-row lg:justify-between">
 
     <!-- Logo and Text Section -->
     <div
@@ -15,13 +15,7 @@
         <!-- Email Input -->
         <div *ngIf="message" class="text-red-500 text-xs pt-2 p-2 rounded-md border border-red-600 w-full justify-center text-center">{{ message }}</div>
         <div class="flex flex-col">
-          <input 
-            id="username" 
-            placeholder="Username" 
-            type="text" 
-            formControlName="username"
-            class="px-2 py-3 text-[12px] rounded-md bg-grey-300 border-none focus:outline-none focus:ring-1 focus:ring-orange-400 text-grey-200"
-          >
+ 
         </div>
 
         <!-- Password Input -->

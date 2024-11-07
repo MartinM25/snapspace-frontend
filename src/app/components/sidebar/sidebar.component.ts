@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { IconComponent } from '../icon/icon.component';
+import { AuthService } from '../../services/auth.service';
 import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
@@ -29,14 +30,22 @@ export class SidebarComponent {
     { path: '/saved', label: 'Saved', activeIcon: 'save-solid', inactiveIcon: 'save-outline' },
   ];
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+  ) {
     this.router.events.subscribe(() => {
       this.currentRoute =  this.router.url;
-    })
+    });
   }
 
   isRouteActive(route: string): boolean {
     return this.currentRoute === route;
+  }
+
+  logout() {
+    this.authService.logout(); // Clear localStorage
+    this.router.navigate(['/login']); // Redirect to login page after logout
   }
 
 }

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router'; 
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 

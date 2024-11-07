@@ -6,15 +6,14 @@
 
   <!-- Main Content -->
   <div [ngClass]="{
-    'flex-1 lg:ml-[250px]': showSidebar() && isLargeScreen(), 
-    'flex-1 ml-0': !showSidebar || !isLargeScreen()
-    }" class="flex-1 p-6">
+    'flex-1 ml-0': !showSidebar() || !isLargeScreen(), 
+    'flex-1': showSidebar() && isLargeScreen()
+    }" class="p-6">
     <router-outlet></router-outlet>
   </div>
 
   <!-- Small Screen Bottom Navigation -->
   <div class="lg:hidden" *ngIf="showBottomNav()">
-    <app-bottomnav ></app-bottomnav>
+    <app-bottomnav></app-bottomnav>
   </div>
-
 </div>

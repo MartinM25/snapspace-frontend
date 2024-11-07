@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router'; 
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
@@ -52,6 +52,11 @@ export class LoginComponent {
       next: response => {
         console.log('Login successful, token:', response.token);
         localStorage.setItem('token', response.token);
+
+        // Store user details if available
+        if (response.user) {
+          localStorage.setItem('user', JSON.stringify(response.user)); // Store user details in local storage
+        }
         this.isLoading = false;
 
         // Redirect or show success message

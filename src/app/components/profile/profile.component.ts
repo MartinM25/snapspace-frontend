@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,11 +9,24 @@ import { Router } from '@angular/router';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-  @Input() fullName: string = 'John Doe';
-  @Input() username: string = 'johndoe';
-  @Input() profilePicture: string = 'assets/images/user.png';
+  fullName: string | null = null;
+  username: string | null = null;
 
-  constructor(private router: Router) {}
+
+  constructor(private router: Router) {
+    this.loadUserDetails();
+  }
+
+  loadUserDetails() {
+    if (typeof window !== 'undefined') {
+      const user = localStorage.getItem('user');
+      if (user) {
+        const userData = JSON.parse(user);
+        this.fullName = userData.fullName; // Assuming the user object has a fullName property
+        this.username = userData.username; // Assuming the user object has a username property
+      }
+    }
+  }
 
   goToProfile() {
     this.router.navigate(['/profile']);

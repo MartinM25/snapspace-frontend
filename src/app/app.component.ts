@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser  } from '@angular/common';
 import { RouterOutlet, Router } from '@angular/router';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BottomnavComponent } from "./components/bottomnav/bottomnav.component";
@@ -16,16 +16,33 @@ import { BottomnavComponent } from "./components/bottomnav/bottomnav.component";
 export class AppComponent {
   title = 'snapspace';
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router, 
+    @Inject(PLATFORM_ID) 
+    private platformId: Object
+  ) { }
 
   ngOnInit() {
-    const token = localStorage.getItem('jwtToken'); // Check for token on initialization
-    if (token) {
-      this.router.navigate(['/home']); // Redirect to home if logged in
-    } else {
-      this.router.navigate(['/login']); // Redirect to login if not logged in
+    if (isPlatformBrowser(this.platformId)) {
+      const token = localStorage.getItem('jwtToken'); // Check for token on initialization
+      const currentUrl = this.router.url; // Get the current URL
+  
+      // Allow users to stay on any page they're on after a reload
+      if (!token) {
+        // If no token, redirect only if they try to access protected routes
+        const unprotectedRoutes = ['/login', '/register'];
+        if (!unprotectedRoutes.includes(currentUrl)) {
+          this.router.navigate(['/login']); // Redirect to login only if on a protected route
+        }
+      } else {
+        // If token exists, prevent access to login or register pages
+        if (currentUrl === '/login' || currentUrl === '/register') {
+          this.router.navigate(['/home']);
+        }
+      }
     }
   }
+  
 
   showSidebar(): boolean {
     const hideRoutes = ['/login', '/register']; // Add more routes here as needed

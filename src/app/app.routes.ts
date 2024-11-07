@@ -2,12 +2,12 @@ import { Routes } from '@angular/router';
 
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
+import { LoginComponent } from './pages/auth/login/login.component';
 import { SavedComponent } from './pages/saved/saved.component';
 import { CreateComponent } from './pages/create/create.component';
 import { ExploreComponent } from './pages/explore/explore.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { RegisterComponent } from './pages/register/register.component';
+import { RegisterComponent } from './pages/auth/register/register.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 
 export const routes: Routes = [
@@ -36,6 +36,6 @@ export const routes: Routes = [
     path: 'create', component: CreateComponent, canActivate: [AuthGuard]
   },
   { 
-    path: '', redirectTo: '/', pathMatch: 'full' 
+    path: '', redirectTo: '/login', pathMatch: 'full' 
   },
 ];
